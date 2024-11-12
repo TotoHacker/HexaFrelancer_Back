@@ -98,15 +98,5 @@ CREATE TABLE UserSkills (
     FOREIGN KEY (user_id) REFERENCES User(user_id) ON DELETE CASCADE,
     FOREIGN KEY (skill_id) REFERENCES Skills(skill_id) ON DELETE CASCADE
 );
+ALTER TABLE User MODIFY role ENUM('freelancer', 'cliente', 'admin') NOT NULL;
 
--- Tabla de Archivos Adjuntos
-CREATE TABLE Attachments (
-    attachment_id INT AUTO_INCREMENT PRIMARY KEY,
-    project_id INT,
-    message_id INT,
-    file_url VARCHAR(255) NOT NULL,
-    file_type VARCHAR(50),
-    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (project_id) REFERENCES Projects(project_id) ON DELETE SET NULL,
-    FOREIGN KEY (message_id) REFERENCES Messages(message_id) ON DELETE SET NULL
-);
