@@ -1,6 +1,5 @@
 import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
-
 export enum UserRole {
     FREELANCER = "freelancer",
     CLIENTE = "cliente"
