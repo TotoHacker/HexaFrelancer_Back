@@ -4,8 +4,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from 'src/capaClientes/modules/user.module';
-import { UserEntity } from 'src/capaClientes/Entities/user.entity';
-
+import { ProjectApplicationsModule } from '../CapaClientes/modules/project-applications.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -25,7 +24,6 @@ import { UserEntity } from 'src/capaClientes/Entities/user.entity';
           username: configService.get<string>('DB_USERNAME'),
           password: configService.get<string>('DB_PASSWORD'),
           database: configService.get<string>('DB_NAME'),
-          // Cambia la ruta a las entidades
           entities: [__dirname + '/../capaClientes/Entities/*.entity{.ts,.js}'],
           synchronize: false,
         };
@@ -34,7 +32,7 @@ import { UserEntity } from 'src/capaClientes/Entities/user.entity';
     }),
     
 
-    UserModule,
+    UserModule,ProjectApplicationsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
