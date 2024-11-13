@@ -15,19 +15,24 @@ import { UserEntity } from 'src/capaClientes/Entities/user.entity';
 
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'mysql',
-        host: configService.get<string>('DB_HOST'),
-        port: +configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
-        entities: [UserEntity],
-        // entities: [__dirname + '/**/*.entity{.ts,.js}'],
-        synchronize: false,
-      }),
+      useFactory: (configService: ConfigService) => {
+        console.log('Dirname:', __dirname);
+    
+        return {
+          type: 'mysql',
+          host: configService.get<string>('DB_HOST'),
+          port: +configService.get<number>('DB_PORT'),
+          username: configService.get<string>('DB_USERNAME'),
+          password: configService.get<string>('DB_PASSWORD'),
+          database: configService.get<string>('DB_NAME'),
+          // Cambia la ruta a las entidades
+          entities: [__dirname + '/../capaClientes/Entities/*.entity{.ts,.js}'],
+          synchronize: false,
+        };
+      },
       inject: [ConfigService],
     }),
+    
 
     UserModule,
   ],
