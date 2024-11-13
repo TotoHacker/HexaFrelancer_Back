@@ -3,7 +3,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UserModule } from '../user/user.module';
+import { UserModule } from 'src/capaClientes/modules/user.module';
+import { UserEntity } from 'src/capaClientes/Entities/user.entity';
 
 @Module({
   imports: [
@@ -21,11 +22,13 @@ import { UserModule } from '../user/user.module';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        entities: [__dirname + '/**/*.entity{.ts,.js}'],
+        entities: [UserEntity],
+        // entities: [__dirname + '/**/*.entity{.ts,.js}'],
         synchronize: false,
       }),
       inject: [ConfigService],
     }),
+
     UserModule,
   ],
   controllers: [AppController],
