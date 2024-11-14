@@ -5,6 +5,10 @@ import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from 'src/capaClientes/modules/user.module';
 import { ProjectApplicationsModule } from '../CapaClientes/modules/project-applications.module';
+import { SkillModule } from 'src/CapaClientes/modules/skill.module';
+import { SkillEntity } from 'src/CapaClientes/entities/skill.entity';
+import { UserEntity } from 'src/capaClientes/Entities/user.entity';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -24,7 +28,8 @@ import { ProjectApplicationsModule } from '../CapaClientes/modules/project-appli
           username: configService.get<string>('DB_USERNAME'),
           password: configService.get<string>('DB_PASSWORD'),
           database: configService.get<string>('DB_NAME'),
-          entities: [__dirname + '/../capaClientes/Entities/*.entity{.ts,.js}'],
+          entities: [UserEntity, SkillEntity],
+          // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
           synchronize: false,
         };
       },
@@ -32,7 +37,7 @@ import { ProjectApplicationsModule } from '../CapaClientes/modules/project-appli
     }),
     
 
-    UserModule,ProjectApplicationsModule,
+    UserModule,ProjectApplicationsModule, SkillModule
   ],
   controllers: [AppController],
   providers: [AppService],
