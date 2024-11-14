@@ -23,7 +23,7 @@ import { ProjectsModule } from '../capaClientes/modules/projects.module';
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
         entities: [__dirname + '/../capaClientes/entities/*.entity{.ts,.js}'],
-        synchronize: true, // Cambiado a true para desarrollo
+        synchronize: false, // Cambiado a true para desarrollo
       }),
       inject: [ConfigService],
     }),
