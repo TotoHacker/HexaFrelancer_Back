@@ -5,25 +5,24 @@ export enum UserRole {
     CLIENTE = "cliente"
 }
 
-@Entity({ name: 'user' })
+@Entity({name: 'user'})
 export class UserEntity {
     @PrimaryGeneratedColumn()
-    user_id: number;
+    user_id:    number;
 
-    @Column({ type: 'varchar', length: 255, nullable: false })
-    name: string;
+    @Column({type: 'varchar', length: 255, nullable: false})
+    name:       string;
 
-    @Column({ type: 'varchar', length: 255, nullable: false, unique: true })
-    email: string;
+    @Column({type: 'varchar', length: 255, nullable: false, unique: true})
+    email:      string;
 
-    @Column({ type: 'varchar', length: 255, nullable: false })
+    @Column({type: 'varchar', length: 255, nullable: false})
 
-    password: string;
+    password:   string;
 
     @Column({ type: 'enum', enum: UserRole, default: UserRole.CLIENTE, nullable: false })
-    role: string;
+    role:       string;
 
     @CreateDateColumn({ type: 'timestamp' })
     created_at: Date;
-    projects: any;
 }

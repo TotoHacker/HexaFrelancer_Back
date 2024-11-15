@@ -4,9 +4,13 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from 'src/capaClientes/modules/user.module';
-import { ProjectApplicationsModule } from '../capaClientes/modules/project-applications.module';
+// import { ProjectApplicationsModule } from '../capaClientes/modules/project-applications.module';
 import { ProjectsModule } from '../capaClientes/modules/projects.module';
+// import {UserEntity} from '../capaClientes/Entities/user.entity' 
+import {Project} from '../capaClientes/Entities/project.entity' 
 
+// import {ProjectsController} from '../CapaClientes/controllers/projects.controller'
+// import {UserController} from '../CapaClientes/controllers/user.controller'
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -22,13 +26,13 @@ import { ProjectsModule } from '../capaClientes/modules/projects.module';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_NAME'),
-        entities: [__dirname + '/../capaClientes/entities/*.entity{.ts,.js}'],
+        entities: [__dirname + '/../capaClientes/Entities/*.entity{.ts,.js}'],        
         synchronize: false, // Cambiado a true para desarrollo
       }),
       inject: [ConfigService],
     }),
     UserModule,
-    ProjectApplicationsModule,
+    // ProjectApplicationsModule,
     ProjectsModule,
   ],
   controllers: [AppController],
