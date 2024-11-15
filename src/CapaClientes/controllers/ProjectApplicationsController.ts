@@ -1,4 +1,3 @@
-// src/capaAplicacion/controllers/ProjectApplicationsController.ts
 import { Body, Controller, Get, Param, Post, Put } from '@nestjs/common';
 import { ApiTags, ApiParam } from '@nestjs/swagger';
 import { CreateProjectApplicationDto, UpdateProjectApplicationStatusDto } from '../dto/CreateProjectApplicationDto';
