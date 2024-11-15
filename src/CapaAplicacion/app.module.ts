@@ -3,13 +3,10 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UserModule } from 'src/capaClientes/modules/user.module';
+import { UserModule } from 'src/CapaClientes/modules/user.module';
 import { ProjectApplicationsModule } from '../CapaClientes/modules/project-applications.module';
 import { SkillModule } from 'src/CapaClientes/modules/skill.module';
-import { SkillEntity } from 'src/CapaClientes/entities/skill.entity';
-import { UserEntity } from 'src/capaClientes/Entities/user.entity';
 import { ProjectsModule } from 'src/CapaClientes/modules/projects.module';
-import { Project } from 'src/CapaClientes/entities/project.entity';
 
 // import {ProjectsController} from '../CapaClientes/controllers/projects.controller'
 // import {UserController} from '../CapaClientes/controllers/user.controller'
@@ -31,8 +28,7 @@ import { Project } from 'src/CapaClientes/entities/project.entity';
           username: configService.get<string>('DB_USERNAME'),
           password: configService.get<string>('DB_PASSWORD'),
           database: configService.get<string>('DB_NAME'),
-          entities: [UserEntity, SkillEntity, Project],
-          // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+          entities: [__dirname + '/../**/*.entity{.ts,.js}'],
           synchronize: false,
         };
       },
