@@ -1,0 +1,40 @@
+Estructura de la Base de Datos
+Tabla de Usuarios (User)
+
+Almacena datos básicos de los usuarios, incluyendo su nombre, correo, contraseña y rol (freelancer o cliente).
+Relacionada con la tabla Profiles (perfil de usuario), Projects (proyectos creados por el cliente), y ProjectApplications (solicitudes de freelancers para proyectos).
+Tabla de Perfiles (Profiles)
+
+Guarda información adicional de cada usuario, como biografía, habilidades, experiencia y ubicación.
+Relacionada con User a través de la clave user_id para enlazar el perfil con su usuario.
+Tabla de Proyectos (Projects)
+
+Define los proyectos creados por los clientes. Contiene detalles como el título, la descripción, el presupuesto, el estado y la fecha límite.
+Está vinculada con User y relacionada con ProjectApplications (solicitudes para proyectos) y Attachments (archivos adjuntos).
+Tabla de Solicitudes de Proyectos (ProjectApplications)
+
+Almacena las solicitudes de freelancers para proyectos, con su propuesta y presupuesto ofrecido.
+Está vinculada tanto a Projects como a User (el freelancer que realiza la solicitud).
+Tabla de Calificaciones y Reseñas (RatingsAndReviews)
+
+Permite a los usuarios dejar calificaciones y reseñas de los proyectos completados.
+Relacionada con Projects y dos referencias de usuario: el revisor y el usuario evaluado.
+Tabla de Mensajes (Messages)
+
+Permite la comunicación entre usuarios para cada proyecto.
+Vincula al emisor, receptor, y el proyecto asociado (opcional).
+Tabla de Notificaciones (Notifications)
+
+Almacena notificaciones para eventos como mensajes nuevos, propuestas y reseñas.
+Cada notificación se asocia con un usuario.
+Tabla de Habilidades (Skills)
+
+Almacena las habilidades que pueden tener los usuarios.
+Relacionada con UserSkills para definir las habilidades de cada usuario.
+Tabla Intermedia de Habilidades de Usuarios (UserSkills)
+
+Es una tabla de relación que conecta User y Skills para asignar múltiples habilidades a cada usuario.
+Tabla de Archivos Adjuntos (Attachments)
+
+Permite a los usuarios adjuntar archivos en los mensajes o los proyectos.
+Relacionada con Projects y Messages.
