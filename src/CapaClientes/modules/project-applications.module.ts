@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ProjectApplicationsController } from '../controllers/ProjectApplicationsController';
+import { ProjectApplicationsController } from '../controllers/ProjectApplications.controller';
 import { ProjectApplicationsService } from '../services/ProjectApplicationsService';
 
 @Module({

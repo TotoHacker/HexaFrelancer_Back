@@ -7,7 +7,7 @@ import { UserModule } from 'src/CapaClientes/modules/user.module';
 import { ProjectApplicationsModule } from '../CapaClientes/modules/project-applications.module';
 import { SkillModule } from 'src/CapaClientes/modules/skill.module';
 import { ProjectsModule } from 'src/CapaClientes/modules/projects.module';
-
+import {NotificationModule} from 'src/CapaClientes/modules/notification.module'
 // import {ProjectsController} from '../CapaClientes/controllers/projects.controller'
 // import {UserController} from '../CapaClientes/controllers/user.controller'
 @Module({
@@ -36,7 +36,7 @@ import { ProjectsModule } from 'src/CapaClientes/modules/projects.module';
     }),
     
 
-    UserModule,ProjectApplicationsModule, SkillModule, ProjectsModule
+    UserModule,ProjectApplicationsModule, SkillModule, ProjectsModule, NotificationModule
   ],
   controllers: [AppController],
   providers: [AppService],
