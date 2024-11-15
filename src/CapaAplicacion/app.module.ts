@@ -15,7 +15,6 @@ import { UserEntity } from 'src/capaClientes/Entities/user.entity';
       envFilePath: '.env',
       isGlobal: true,
     }),
-
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
@@ -42,4 +41,4 @@ import { UserEntity } from 'src/capaClientes/Entities/user.entity';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }
