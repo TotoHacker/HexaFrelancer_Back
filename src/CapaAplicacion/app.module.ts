@@ -4,10 +4,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserModule } from 'src/capaClientes/modules/user.module';
-// import { ProjectApplicationsModule } from '../capaClientes/modules/project-applications.module';
-import { ProjectsModule } from '../capaClientes/modules/projects.module';
-// import {UserEntity} from '../capaClientes/Entities/user.entity' 
-import {Project} from '../capaClientes/Entities/project.entity' 
+import { ProjectApplicationsModule } from '../CapaClientes/modules/project-applications.module';
+import { SkillModule } from 'src/CapaClientes/modules/skill.module';
+import { SkillEntity } from 'src/CapaClientes/entities/skill.entity';
+import { UserEntity } from 'src/capaClientes/Entities/user.entity';
+import { ProjectsModule } from 'src/CapaClientes/modules/projects.module';
+import { Project } from 'src/CapaClientes/entities/project.entity';
 
 // import {ProjectsController} from '../CapaClientes/controllers/projects.controller'
 // import {UserController} from '../CapaClientes/controllers/user.controller'
@@ -19,21 +21,26 @@ import {Project} from '../capaClientes/Entities/project.entity'
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'mysql',
-        host: configService.get<string>('DB_HOST'),
-        port: +configService.get<number>('DB_PORT'),
-        username: configService.get<string>('DB_USERNAME'),
-        password: configService.get<string>('DB_PASSWORD'),
-        database: configService.get<string>('DB_NAME'),
-        entities: [__dirname + '/../capaClientes/Entities/*.entity{.ts,.js}'],        
-        synchronize: false, // Cambiado a true para desarrollo
-      }),
+      useFactory: (configService: ConfigService) => {
+        console.log('Dirname:', __dirname);
+    
+        return {
+          type: 'mysql',
+          host: configService.get<string>('DB_HOST'),
+          port: +configService.get<number>('DB_PORT'),
+          username: configService.get<string>('DB_USERNAME'),
+          password: configService.get<string>('DB_PASSWORD'),
+          database: configService.get<string>('DB_NAME'),
+          entities: [UserEntity, SkillEntity, Project],
+          // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
+          synchronize: false,
+        };
+      },
       inject: [ConfigService],
     }),
-    UserModule,
-    // ProjectApplicationsModule,
-    ProjectsModule,
+    
+
+    UserModule,ProjectApplicationsModule, SkillModule, ProjectsModule
   ],
   controllers: [AppController],
   providers: [AppService],
