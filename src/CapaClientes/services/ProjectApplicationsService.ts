@@ -1,4 +1,3 @@
-// src/capaAplicacion/services/ProjectApplicationsService.ts
 import { Injectable } from '@nestjs/common';
 import { CreateProjectApplicationDto, UpdateProjectApplicationStatusDto } from '../dto/CreateProjectApplicationDto';
 
