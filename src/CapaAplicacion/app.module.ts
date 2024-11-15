@@ -8,6 +8,7 @@ import { ProjectApplicationsModule } from '../CapaClientes/modules/project-appli
 import { SkillModule } from 'src/CapaClientes/modules/skill.module';
 import { SkillEntity } from 'src/CapaClientes/entities/skill.entity';
 import { UserEntity } from 'src/capaClientes/Entities/user.entity';
+import { ProjectsModule } from 'src/CapaClientes/modules/projects.module';
 
 @Module({
   imports: [
@@ -36,7 +37,7 @@ import { UserEntity } from 'src/capaClientes/Entities/user.entity';
     }),
     
 
-    UserModule,ProjectApplicationsModule, SkillModule
+    UserModule,ProjectApplicationsModule, SkillModule, ProjectsModule
   ],
   controllers: [AppController],
   providers: [AppService],
