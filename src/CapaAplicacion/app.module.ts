@@ -9,6 +9,7 @@ import { SkillModule } from 'src/CapaClientes/modules/skill.module';
 import { SkillEntity } from 'src/CapaClientes/entities/skill.entity';
 import { UserEntity } from 'src/capaClientes/Entities/user.entity';
 import { ProjectsModule } from 'src/CapaClientes/modules/projects.module';
+import { Project } from 'src/CapaClientes/entities/project.entity';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { ProjectsModule } from 'src/CapaClientes/modules/projects.module';
           username: configService.get<string>('DB_USERNAME'),
           password: configService.get<string>('DB_PASSWORD'),
           database: configService.get<string>('DB_NAME'),
-          entities: [UserEntity, SkillEntity],
+          entities: [UserEntity, SkillEntity, Project],
           // entities: [__dirname + '/../**/*.entity{.ts,.js}'],
           synchronize: false,
         };
