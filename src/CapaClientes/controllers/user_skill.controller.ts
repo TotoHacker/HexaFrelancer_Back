@@ -19,7 +19,7 @@ export class UserSkillController {
         return await this.userSkillService.update(user_id, dto);
     }
 
-    @Delete('remove/:user_id/:skill_id')
+    @Delete('remove/:user_id')
     async removeSkillFromUser(
         @Param('user_id', ParseIntPipe) user_id: number,
         @Body() dto: UserSkillDto
