@@ -1,18 +1,29 @@
-import { ApiPropertyOptional } from '@nestjs/swagger';
+import { IsInt, IsNotEmpty, IsOptional, IsString, IsEnum, IsDecimal, IsDateString } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class UpdateProjectDto {
-    @ApiPropertyOptional({ example: 'Proyecto de ejemplo modificado' })
-    readonly title?: string;
+  @ApiProperty({ example: 'Nombre del proyecto', description: 'Título del proyecto', required: false })
+  @IsString()
+  @IsOptional()
+  title?: string;
 
-    @ApiPropertyOptional({ example: 'Descripción modificada.' })
-    readonly description?: string;
+  @ApiProperty({ example: 'Descripción del proyecto', description: 'Descripción del proyecto', required: false })
+  @IsString()
+  @IsOptional()
+  description?: string;
 
-    @ApiPropertyOptional({ example: 1500.00 })
-    readonly budget?: number;
+  @ApiProperty({ example: 1000.00, description: 'Presupuesto del proyecto', required: false })
+  @IsDecimal()
+  @IsOptional()
+  budget?: number;
 
-    @ApiPropertyOptional({ example: 'In Progress', enum: ['Open', 'In Progress', 'Completed'] })
-    readonly status?: string;
+  @ApiProperty({ example: 'Open', enum: ['Open', 'In Progress', 'Completed'], description: 'Estado del proyecto', required: false })
+  @IsEnum(['Open', 'In Progress', 'Completed'])
+  @IsOptional()
+  status?: string;
 
-    @ApiPropertyOptional({ example: '2025-01-31' })
-    readonly deadline?: string;
+  @ApiProperty({ example: '2024-12-31', description: 'Fecha límite del proyecto', required: false })
+  @IsDateString()
+  @IsOptional()
+  deadline?: string;
 }
