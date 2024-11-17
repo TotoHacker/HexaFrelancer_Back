@@ -6,6 +6,7 @@ import {
     PrimaryGeneratedColumn 
 } from "typeorm";
 import { ProfileEntity } from "./profile.entity";
+import { UserSkillEntity } from "./user_skill.entity";
 
 export enum UserRole {
     FREELANCER = "freelancer",
@@ -36,4 +37,7 @@ export class UserEntity {
 
     @OneToMany(() => ProfileEntity, profile => profile.user)
     profiles: ProfileEntity[];
+
+    @OneToMany(() => UserSkillEntity, userSkill => userSkill.user)
+    userSkills: UserSkillEntity[];
 }

@@ -73,10 +73,6 @@ export class UserService {
     return { message: `Usuario ${user.name} creado` };
   }
 
-  // async login(dto: LoginDto): Promise<any> {
-
-  // }
-
   async login(dto: LoginDto): Promise<UserEntity | null> {
     const user = await this.userRepository.findOne({ where: { email:dto.email } });
     if (!user) {
@@ -114,12 +110,12 @@ export class UserService {
       throw new Error('Usuario no encontrado');
     }
 
-    const profile = await this.profileRepository.findOne({
-      where: { user: user },
-    });
+    // const profile = await this.profileRepository.findOne({
+    //   where: { user: user },
+    // });
     
     await this.userRepository.delete(user);
-    await this.profileRepository.delete(profile);
+    // await this.profileRepository.delete(profile);
     return { message: `Usuario ${user.name} eliminado` };
   }
 

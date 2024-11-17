@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { UserSkillEntity } from "./user_skill.entity";
 
 @Entity('skills')
 export class SkillEntity {
@@ -7,4 +8,7 @@ export class SkillEntity {
 
     @Column({type: 'varchar', length: 255, nullable: false})
     name:       string;
+
+    @OneToMany(() => UserSkillEntity, userSkill => userSkill.skill)
+    userSkills: UserSkillEntity[];
 }
