@@ -1,8 +1,9 @@
 import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { UserDto } from '../dto/user.dto';
+import { LoginDto } from '../dto/login.dto';
 
-@Controller('user')
+@Controller('users')
 export class UserController {
     constructor(private readonly userService: UserService){}
 
@@ -11,23 +12,28 @@ export class UserController {
         return await this.userService.getAll();
     }
 
-    @Get(':userId')
-    async getOne(@Param('userId', ParseIntPipe) userId: number){
-        return await this.userService.findById(userId)
+    @Get(':user_id')
+    async getOne(@Param('user_id', ParseIntPipe) user_id: number){
+        return await this.userService.findById(user_id)
     }
 
-    @Post()
+    @Post('create')
     async create(@Body() dto: UserDto){
         return await this.userService.create(dto);
     }
 
-    @Put(':userId')
-    async update(@Param('userId', ParseIntPipe) userId: number, @Body() dto: UserDto){
-        return await this.userService.update(userId, dto);
+    @Post('login')
+    async login(@Body() dto: LoginDto){
+        return await this.userService.login(dto);
     }
 
-    @Delete(':userId')
-    async delete(@Param('userId', ParseIntPipe) userId: number){
-        return await this.userService.delete(userId);
+    @Put('edit/:user_id')
+    async update(@Param('user_id', ParseIntPipe) user_id: number, @Body() dto: UserDto){
+        return await this.userService.update(user_id, dto);
+    }
+
+    @Delete('delete/:user_id')
+    async delete(@Param('user_id', ParseIntPipe) user_id: number){
+        return await this.userService.delete(user_id);
     }
 }

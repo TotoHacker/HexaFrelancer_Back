@@ -2,7 +2,7 @@ import { Body, Controller, Delete, Get, Param, ParseIntPipe, Post, Put } from '@
 import { SkillService } from '../services/skill.service';
 import { SkillDto } from '../dto/skill.dto';
 
-@Controller('skill')
+@Controller('skills')
 export class SkillController {
     constructor(private readonly skillService: SkillService){}
 
@@ -11,23 +11,23 @@ export class SkillController {
         return await this.skillService.getAll();
     }
 
-    @Get(':skillId')
-    async getOne(@Param('skillId', ParseIntPipe) skillId: number){
-        return await this.skillService.findById(skillId)
+    @Get(':skill_id')
+    async getOne(@Param('skill_id', ParseIntPipe) skill_id: number){
+        return await this.skillService.findById(skill_id)
     }
 
-    @Post()
+    @Post('create')
     async create(@Body() dto: SkillDto){
         return await this.skillService.create(dto);
     }
 
-    @Put(':skillId')
-    async update(@Param('skillId', ParseIntPipe) skillId: number, @Body() dto: SkillDto){
-        return await this.skillService.update(skillId, dto);
+    @Put('edit/:skill_id')
+    async update(@Param('skill_id', ParseIntPipe) skill_id: number, @Body() dto: SkillDto){
+        return await this.skillService.update(skill_id, dto);
     }
 
-    @Delete(':skillId')
-    async delete(@Param('skillId', ParseIntPipe) skillId: number){
-        return await this.skillService.delete(skillId);
+    @Delete('delete/:skill_id')
+    async delete(@Param('skill_id', ParseIntPipe) skill_id: number){
+        return await this.skillService.delete(skill_id);
     }
 }

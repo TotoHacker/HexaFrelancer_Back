@@ -8,8 +8,8 @@ import { ProjectApplicationsModule } from '../CapaClientes/modules/project-appli
 import { SkillModule } from 'src/CapaClientes/modules/skill.module';
 import { ProjectsModule } from 'src/CapaClientes/modules/projects.module';
 import {NotificationModule} from 'src/CapaClientes/modules/notification.module'
-// import {ProjectsController} from '../CapaClientes/controllers/projects.controller'
-// import {UserController} from '../CapaClientes/controllers/user.controller'
+import { ProfileModule } from 'src/CapaClientes/modules/profile.module';
+
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -19,8 +19,7 @@ import {NotificationModule} from 'src/CapaClientes/modules/notification.module'
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: (configService: ConfigService) => {
-        console.log('Dirname:', __dirname);
-    
+        // console.log('Dirname:', __dirname);
         return {
           type: 'mysql',
           host: configService.get<string>('DB_HOST'),
@@ -36,7 +35,7 @@ import {NotificationModule} from 'src/CapaClientes/modules/notification.module'
     }),
     
 
-    UserModule,ProjectApplicationsModule, SkillModule, ProjectsModule, NotificationModule
+    UserModule, ProjectApplicationsModule, SkillModule, ProjectsModule, NotificationModule, ProfileModule
   ],
   controllers: [AppController],
   providers: [AppService],

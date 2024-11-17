@@ -1,4 +1,11 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { 
+    Column, 
+    CreateDateColumn, 
+    Entity, 
+    OneToMany, 
+    PrimaryGeneratedColumn 
+} from "typeorm";
+import { ProfileEntity } from "./profile.entity";
 
 export enum UserRole {
     FREELANCER = "freelancer",
@@ -17,7 +24,6 @@ export class UserEntity {
     email: string;
 
     @Column({ type: 'varchar', length: 255, nullable: false })
-
     password: string;
 
     @Column({ type: 'enum', enum: UserRole, default: UserRole.CLIENTE, nullable: false })
@@ -25,5 +31,9 @@ export class UserEntity {
 
     @CreateDateColumn({ type: 'timestamp' })
     created_at: Date;
-    projects: any;
+
+    // projects: any;
+
+    @OneToMany(() => ProfileEntity, profile => profile.user)
+    profiles: ProfileEntity[];
 }
