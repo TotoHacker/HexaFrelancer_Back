@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, JoinColumn, CreateDa
 import { Project } from '../entities/project.entity';
 import { UserEntity } from '../entities/user.entity';
 
-@Entity(`ratingsandreviews`)
+@Entity(`RatingsAndReviews`)
 export class RatingReview {
   @PrimaryGeneratedColumn()
   review_id: number;
