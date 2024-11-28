@@ -13,7 +13,7 @@ export enum UserRole {
     CLIENTE = "cliente"
 }
 
-@Entity('user')
+@Entity('User')
 export class UserEntity {
     @PrimaryGeneratedColumn()
     user_id: number;
