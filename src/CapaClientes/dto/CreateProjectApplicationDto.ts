@@ -1,36 +1,17 @@
-
-import { ApiProperty } from '@nestjs/swagger';
+import { IsInt, IsString, IsOptional, IsDecimal, Min } from 'class-validator';
 
 export class CreateProjectApplicationDto {
-  @ApiProperty({
-    description: 'ID del proyecto al que se quiere aplicar',
-    example: 123,
-  })
-  projectId: number;
+  @IsInt()
+  freelancer_id: number;
 
-  @ApiProperty({
-    description: 'ID del freelancer que aplica al proyecto',
-    example: 456,
-  })
-  freelancerId: number;
+  @IsInt()
+  project_id: number;
 
-  @ApiProperty({
-    description: 'Texto de la propuesta del freelancer',
-    example: 'Estoy muy interesado en este proyecto y tengo la experiencia necesaria para llevarlo a cabo.',
-  })
-  proposalText: string;
+  @IsString()
+  @IsOptional() // El texto de la propuesta es opcional, en caso de que no se ingrese
+  proposal_text?: string;
 
-  @ApiProperty({
-    description: 'Presupuesto propuesto por el freelancer para completar el proyecto',
-    example: 1000,
-  })
-  proposedBudget: number;
-}
-
-export class UpdateProjectApplicationStatusDto {
-  @ApiProperty({
-    description: 'Nuevo estado de la solicitud (Accepted o Rejected)',
-    example: 'Accepted',
-  })
-  status: 'Accepted' | 'Rejected';
+  @IsDecimal()
+  @Min(0) // El presupuesto propuesto no puede ser negativo
+  proposed_budget: number;
 }
